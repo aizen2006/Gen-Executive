@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from './components/SEO';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import SocialProof from './components/SocialProof';
@@ -16,6 +17,7 @@ import Footer from './components/Footer';
 const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-brand-dark text-brand-light selection:bg-brand-cyan selection:text-brand-dark overflow-x-hidden">
+      <SEO />
       <Navbar />
       <main>
         <Hero />
