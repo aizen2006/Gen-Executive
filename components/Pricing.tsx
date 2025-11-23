@@ -34,11 +34,11 @@ const Pricing: React.FC = () => {
   ];
 
   return (
-    <section id="pricing" className="py-24 bg-[#050816]">
+    <section id="pricing" className="py-24 bg-brand-dark">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Simple, scalable plans.</h2>
-          <p className="text-gray-400">Start lean, scale as your operations grow.</p>
+          <h2 className="text-4xl font-bold mb-4 text-brand-light">Simple, scalable plans.</h2>
+          <p className="text-brand-muted">Start lean, scale as your operations grow.</p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -46,7 +46,7 @@ const Pricing: React.FC = () => {
             <motion.div
               key={idx}
               whileHover={{ y: -10 }}
-              className={`relative p-8 rounded-2xl border ${plan.highlight ? 'bg-[#0F111A] border-brand-cyan shadow-[0_0_30px_rgba(34,230,255,0.1)]' : 'bg-transparent border-white/10'}`}
+              className={`relative p-8 rounded-2xl border ${plan.highlight ? 'bg-brand-surface border-brand-cyan shadow-[0_0_30px_rgba(34,230,255,0.1)]' : 'bg-transparent border-brand-border'}`}
             >
               {plan.highlight && (
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-cyan text-brand-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
@@ -55,18 +55,18 @@ const Pricing: React.FC = () => {
               )}
               
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
-                <p className="text-sm text-gray-500 mb-6">{plan.for}</p>
+                <h3 className="text-xl font-bold text-brand-light mb-1">{plan.name}</h3>
+                <p className="text-sm text-brand-muted mb-6">{plan.for}</p>
                 <div className="flex items-baseline">
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  <span className="text-gray-500 ml-1">{plan.period}</span>
+                  <span className="text-4xl font-bold text-brand-light">{plan.price}</span>
+                  <span className="text-brand-muted ml-1">{plan.period}</span>
                 </div>
               </div>
 
               <ul className="space-y-4 mb-8">
                 {plan.features.map((feat, fIdx) => (
-                  <li key={fIdx} className="flex items-start gap-3 text-sm text-gray-300">
-                    <Check size={16} className={`mt-0.5 flex-shrink-0 ${plan.highlight ? 'text-brand-cyan' : 'text-gray-500'}`} />
+                  <li key={fIdx} className="flex items-start gap-3 text-sm text-brand-muted">
+                    <Check size={16} className={`mt-0.5 flex-shrink-0 ${plan.highlight ? 'text-brand-cyan' : 'text-brand-muted'}`} />
                     {feat}
                   </li>
                 ))}
@@ -75,7 +75,7 @@ const Pricing: React.FC = () => {
               <button className={`w-full py-3 rounded-lg font-bold text-sm transition-all ${
                 plan.highlight 
                   ? 'bg-brand-cyan text-brand-dark hover:bg-white' 
-                  : 'bg-white/5 text-white hover:bg-white/10'
+                  : 'bg-brand-surface text-brand-light hover:bg-brand-surface/80 border border-brand-border'
               }`}>
                 {plan.cta}
               </button>

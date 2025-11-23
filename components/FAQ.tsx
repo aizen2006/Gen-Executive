@@ -15,17 +15,17 @@ const FAQ: React.FC = () => {
   return (
     <section className="py-20 bg-brand-dark">
       <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">Questions, answered.</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-brand-light">Questions, answered.</h2>
         
         <div className="space-y-4">
           {questions.map((item, idx) => (
-            <div key={idx} className="border border-white/10 rounded-lg bg-[#0F111A] overflow-hidden">
+            <div key={idx} className="border border-brand-border rounded-lg bg-brand-surface overflow-hidden">
               <button
                 onClick={() => setActiveIndex(activeIndex === idx ? null : idx)}
                 className="w-full flex items-center justify-between p-6 text-left"
               >
-                <span className="font-medium text-lg">{item.q}</span>
-                {activeIndex === idx ? <Minus className="text-brand-cyan" /> : <Plus className="text-gray-500" />}
+                <span className="font-medium text-lg text-brand-light">{item.q}</span>
+                {activeIndex === idx ? <Minus className="text-brand-cyan" /> : <Plus className="text-brand-muted" />}
               </button>
               
               <AnimatePresence>
@@ -36,7 +36,7 @@ const FAQ: React.FC = () => {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-6 pt-0 text-gray-400 leading-relaxed">
+                    <div className="p-6 pt-0 text-brand-muted leading-relaxed">
                       {item.a}
                     </div>
                   </motion.div>

@@ -34,8 +34,8 @@ const HowItWorks: React.FC = () => {
     <section id="how-it-works" className="py-24 bg-brand-dark relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">How It Works</h2>
-          <p className="text-gray-400">From chaos to autopilot in two weeks.</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-brand-light">How It Works</h2>
+          <p className="text-brand-muted">From chaos to autopilot in two weeks.</p>
         </div>
 
         <div className="grid md:grid-cols-4 gap-8 relative">
@@ -53,14 +53,14 @@ const HowItWorks: React.FC = () => {
             >
               {/* Step Number/Icon */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-24 h-24 rounded-full bg-brand-dark border border-brand-cyan/30 flex items-center justify-center mb-6 group-hover:border-brand-cyan group-hover:shadow-[0_0_20px_rgba(34,230,255,0.2)] transition-all duration-300">
-                  <step.icon size={32} className="text-gray-300 group-hover:text-brand-cyan transition-colors" />
+                <div className="w-24 h-24 rounded-full bg-brand-dark dark:bg-brand-dark bg-brand-surface border border-brand-cyan/30 flex items-center justify-center mb-6 group-hover:border-brand-cyan group-hover:shadow-[0_0_20px_rgba(34,230,255,0.2)] transition-all duration-300">
+                  <step.icon size={32} className="text-brand-muted group-hover:text-brand-cyan transition-colors" />
                 </div>
                 
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed mb-4">{step.desc}</p>
+                <h3 className="text-xl font-bold mb-3 text-brand-light">{step.title}</h3>
+                <p className="text-sm text-brand-muted leading-relaxed mb-4">{step.desc}</p>
                 
-                <span className="text-xs font-mono py-1 px-3 rounded-full bg-white/5 text-brand-violet border border-white/5">
+                <span className="text-xs font-mono py-1 px-3 rounded-full bg-brand-surface text-brand-violet border border-brand-border">
                   {step.time}
                 </span>
               </div>

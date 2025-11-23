@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Light Mode Variables (Default) */
+  --bg-main: #F5F7FA; /* Light Grayish White */
+  --bg-surface: #FFFFFF; /* Clean White */
+  --text-main: #050816; /* Deep Dark Blue/Black */
+  --text-muted: #64748B; /* Slate 500 */
+  --border-color: rgba(0, 0, 0, 0.1);
+  
+  /* Accent Colors (Shared but can be tweaked per theme if needed) */
+  --brand-cyan: #00B8D4; /* Slightly darker for light mode visibility? Or keep same */
+  --brand-violet: #9333EA;
+  --brand-slate: #1e293b;
+}
+@theme {
+    --color-brand-dark: var(--bg-main);
+    --color-brand-light: var(--text-main);
+    --color-brand-surface: var(--bg-surface);
+    --color-brand-muted: var(--text-muted);
+    --color-brand-border: var(--border-color);
+    --color-brand-cyan: var(--brand-cyan);
+    --color-brand-violet: var(--brand-violet);
+    --color-brand-slate: var(--brand-slate);
+
+    --animate-blob: blob 7s infinite;
+    
+    @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+    }
+}
+
+.dark {
+  /* Dark Mode Variables (Overrides) */
+  --bg-main: #050816; /* Brand Dark */
+  --bg-surface: rgba(255, 255, 255, 0.05); /* Translucent White */
+  --text-main: #F5F7FA; /* Brand Light */
+  --text-muted: #94A3B8; /* Slate 400 */
+  --border-color: rgba(255, 255, 255, 0.1);
+  
+  --brand-cyan: #22E6FF;
+  --brand-violet: #A855F7;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+

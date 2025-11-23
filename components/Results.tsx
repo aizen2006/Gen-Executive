@@ -78,9 +78,9 @@ const Results: React.FC = () => {
   };
 
   return (
-    <section id="results" className="py-24 bg-brand-dark border-t border-white/5 overflow-hidden">
+    <section id="results" className="py-24 bg-brand-dark border-t border-brand-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-16">Results our clients see in 60 days</h2>
+        <h2 className="text-3xl md:text-5xl font-bold mb-16 text-brand-light">Results our clients see in 60 days</h2>
         
         {/* KPI Row */}
         <div className="grid md:grid-cols-3 gap-12 mb-24">
@@ -97,7 +97,7 @@ const Results: React.FC = () => {
               transition={{ delay: idx * 0.2, type: "spring" }}
               className="relative"
             >
-              <div className="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 mb-2">
+              <div className="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-brand-light to-brand-muted mb-2">
                 {stat.value}
               </div>
               <div className="text-lg text-brand-cyan">{stat.label}</div>
@@ -132,7 +132,7 @@ const Results: React.FC = () => {
                   }}
                   className="absolute w-full h-full cursor-grab active:cursor-grabbing"
                 >
-                    <div className="h-full bg-[#0F111A] border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col justify-center text-left">
+                    <div className="h-full bg-brand-surface border border-brand-border rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col justify-center text-left">
                         {/* Background Decoration */}
                         <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${caseStudies[currentIndex].color} blur-[80px] opacity-30 rounded-full pointer-events-none`} />
 
@@ -143,31 +143,31 @@ const Results: React.FC = () => {
                                     <div className={`text-xs font-bold uppercase tracking-wider mb-2 ${caseStudies[currentIndex].accent}`}>
                                         Case Study 0{caseStudies[currentIndex].id}
                                     </div>
-                                    <h3 className="text-3xl font-bold text-white mb-2">{caseStudies[currentIndex].client}</h3>
-                                    <div className="inline-block px-3 py-1 rounded-full bg-white/5 text-xs text-gray-400 mb-6 border border-white/5">
+                                    <h3 className="text-3xl font-bold text-brand-light mb-2">{caseStudies[currentIndex].client}</h3>
+                                    <div className="inline-block px-3 py-1 rounded-full bg-brand-dark dark:bg-white/5 text-xs text-brand-muted mb-6 border border-brand-border">
                                         {caseStudies[currentIndex].industry}
                                     </div>
 
                                     <div className="space-y-4">
                                         <div>
-                                            <div className="text-xs text-gray-500 uppercase font-semibold">Challenge</div>
-                                            <div className="text-gray-300">{caseStudies[currentIndex].problem}</div>
+                                            <div className="text-xs text-brand-muted uppercase font-semibold">Challenge</div>
+                                            <div className="text-brand-light">{caseStudies[currentIndex].problem}</div>
                                         </div>
                                         <div>
-                                            <div className="text-xs text-gray-500 uppercase font-semibold">Solution</div>
-                                            <div className="text-white font-medium">{caseStudies[currentIndex].solution}</div>
+                                            <div className="text-xs text-brand-muted uppercase font-semibold">Solution</div>
+                                            <div className="text-brand-light font-medium">{caseStudies[currentIndex].solution}</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="mt-6 pt-6 border-t border-white/5">
-                                     <div className="text-4xl font-bold text-white">{caseStudies[currentIndex].result}</div>
+                                <div className="mt-6 pt-6 border-t border-brand-border">
+                                     <div className="text-4xl font-bold text-brand-light">{caseStudies[currentIndex].result}</div>
                                 </div>
                             </div>
 
                             {/* Right Side: Quote */}
-                            <div className="flex-1 flex items-center justify-center bg-black/20 rounded-xl p-6 relative">
-                                <Quote className="absolute top-4 left-4 text-white/10 w-12 h-12" />
-                                <p className="text-xl italic text-gray-300 font-light relative z-10 text-center">
+                            <div className="flex-1 flex items-center justify-center bg-brand-dark/10 dark:bg-black/20 rounded-xl p-6 relative">
+                                <Quote className="absolute top-4 left-4 text-brand-muted/20 w-12 h-12" />
+                                <p className="text-xl italic text-brand-muted font-light relative z-10 text-center">
                                     "{caseStudies[currentIndex].quote}"
                                 </p>
                             </div>
@@ -178,13 +178,13 @@ const Results: React.FC = () => {
 
             {/* Navigation Buttons */}
             <button 
-                className="absolute top-1/2 -left-12 md:-left-20 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition-colors border border-white/10 z-20"
+                className="absolute top-1/2 -left-12 md:-left-20 transform -translate-y-1/2 w-12 h-12 rounded-full bg-brand-surface hover:bg-brand-surface/80 flex items-center justify-center text-brand-light transition-colors border border-brand-border z-20"
                 onClick={() => paginate(-1)}
             >
                 <ArrowLeft size={20} />
             </button>
             <button 
-                className="absolute top-1/2 -right-12 md:-right-20 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition-colors border border-white/10 z-20"
+                className="absolute top-1/2 -right-12 md:-right-20 transform -translate-y-1/2 w-12 h-12 rounded-full bg-brand-surface hover:bg-brand-surface/80 flex items-center justify-center text-brand-light transition-colors border border-brand-border z-20"
                 onClick={() => paginate(1)}
             >
                 <ArrowRight size={20} />

@@ -24,30 +24,30 @@ const UseCases: React.FC = () => {
   ];
 
   return (
-    <section id="use-cases" className="py-20 bg-[#080B1A]">
+    <section id="use-cases" className="py-20 bg-brand-dark">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">Built for modern operators.</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-brand-light">Built for modern operators.</h2>
         
         <div className="grid md:grid-cols-3 gap-8">
           {personas.map((p, idx) => (
             <motion.div
               key={idx}
               whileHover={{ y: -5 }}
-              className="bg-[#0F111A] border border-white/5 rounded-2xl p-8 relative overflow-hidden group"
+              className="bg-brand-surface border border-brand-border rounded-2xl p-8 relative overflow-hidden group"
             >
               <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${p.gradient} blur-3xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity`} />
               
-              <h3 className="text-xl font-bold mb-6 relative z-10">{p.role}</h3>
+              <h3 className="text-xl font-bold mb-6 relative z-10 text-brand-light">{p.role}</h3>
               
               <div className="space-y-4 relative z-10">
                 <div>
                   <div className="text-xs text-red-400 font-semibold uppercase mb-1">From</div>
-                  <p className="text-sm text-gray-400">{p.from}</p>
+                  <p className="text-sm text-brand-muted">{p.from}</p>
                 </div>
-                <div className="h-px bg-white/10 w-full" />
+                <div className="h-px bg-brand-border w-full" />
                 <div>
                   <div className="text-xs text-green-400 font-semibold uppercase mb-1">To</div>
-                  <p className="text-sm text-gray-200">{p.to}</p>
+                  <p className="text-sm text-brand-light">{p.to}</p>
                 </div>
               </div>
             </motion.div>

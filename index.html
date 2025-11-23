@@ -25,55 +25,20 @@
     <meta property="twitter:description" content="Executive-level support, powered by AI agents. We build custom AI agents, chatbots, and landing pages while handling your admin needs." />
     <meta property="twitter:image" content="https://www.genexecutive.com/og-image.jpg" />
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            colors: {
-              brand: {
-                dark: '#050816',
-                light: '#F5F7FA',
-                cyan: '#22E6FF',
-                violet: '#A855F7',
-                slate: '#1e293b'
-              }
-            },
-            animation: {
-              'blob': 'blob 7s infinite',
-            },
-            keyframes: {
-              blob: {
-                '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                '100%': { transform: 'translate(0px, 0px) scale(1)' },
-              }
-            }
-          }
-        }
-      }
+      // Tailwind configuration is handled via @tailwindcss/vite and index.css
     </script>
     <style>
       html {
         scroll-behavior: smooth;
         scroll-padding-top: 100px; /* Offset for sticky header */
       }
-      body {
-        background-color: #050816;
-        color: #F5F7FA;
-        overflow-x: hidden;
-      }
       /* Custom scrollbar for tech feel */
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #050816;
+        background: var(--bg-main);
       }
       ::-webkit-scrollbar-thumb {
         background: #334155;

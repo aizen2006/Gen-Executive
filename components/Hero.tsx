@@ -29,19 +29,19 @@ const Hero: React.FC = () => {
           style={{ opacity }}
           className="space-y-8"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-cyan text-xs font-medium uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-brand-border text-brand-cyan text-xs font-medium uppercase tracking-wider">
             <span className="w-2 h-2 rounded-full bg-brand-cyan animate-pulse" />
             New-age AI + Human Ops Studio
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-brand-light">
             Executive-level support, <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-violet">
               powered by AI agents.
             </span>
           </h1>
 
-          <p className="text-lg text-gray-400 max-w-xl">
+          <p className="text-lg text-brand-muted max-w-xl">
             GenExecutive builds custom AI agents, chatbots, and landing pages while handling your admin needs — so you stay in 'strategy mode'.
           </p>
 
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + (i * 0.1) }}
-                className="flex items-center gap-3 text-gray-300"
+                className="flex items-center gap-3 text-brand-muted"
               >
                 <div className="p-1 rounded bg-brand-cyan/10 text-brand-cyan">
                   <item.icon size={16} />
@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
             <motion.button 
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-lg flex items-center justify-center gap-2 backdrop-blur-sm"
+              className="px-8 py-4 bg-brand-surface border border-brand-border text-brand-light font-semibold rounded-lg flex items-center justify-center gap-2 backdrop-blur-sm"
             >
               <PlayCircle size={18} className="text-brand-violet" /> View Sample Dashboards
             </motion.button>
@@ -96,7 +96,7 @@ const Hero: React.FC = () => {
           {/* Main Dashboard Card */}
           <motion.div 
             whileHover={{ rotateY: -5, rotateX: 5 }}
-            className="w-full max-w-lg bg-[#0F111A]/90 border border-white/10 rounded-2xl shadow-2xl p-6 backdrop-blur-md relative z-10"
+            className="w-full max-w-lg bg-[#0F111A]/90 border border-white/10 rounded-2xl shadow-2xl p-6 backdrop-blur-md relative z-10 text-white"
           >
             {/* Mock Header */}
             <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-4">
@@ -133,7 +133,7 @@ const Hero: React.FC = () => {
                 <div key={i} className="flex items-center justify-between bg-white/5 p-3 rounded-lg border border-white/5">
                   <div className="flex items-center gap-3">
                     <div className={`w-2 h-2 rounded-full ${agent.color} animate-pulse`} />
-                    <span className="text-sm font-medium">{agent.name}</span>
+                    <span className="text-sm font-medium text-white">{agent.name}</span>
                   </div>
                   <span className="text-xs text-gray-400">{agent.status}</span>
                 </div>
@@ -145,7 +145,7 @@ const Hero: React.FC = () => {
           <motion.div 
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-10 -right-10 bg-[#1A1D2D] p-4 rounded-xl border border-white/10 shadow-xl max-w-[200px] z-20 hidden md:block"
+            className="absolute -top-10 -right-10 bg-[#1A1D2D] p-4 rounded-xl border border-white/10 shadow-xl max-w-[200px] z-20 hidden md:block text-white"
           >
             <div className="flex items-center gap-2 mb-2">
               <div className="w-8 h-8 rounded-full bg-brand-cyan/20 flex items-center justify-center text-brand-cyan">
@@ -159,7 +159,7 @@ const Hero: React.FC = () => {
           <motion.div 
             animate={{ y: [0, 20, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute -bottom-5 -left-5 bg-[#1A1D2D] p-4 rounded-xl border border-white/10 shadow-xl z-20 hidden md:block"
+            className="absolute -bottom-5 -left-5 bg-[#1A1D2D] p-4 rounded-xl border border-white/10 shadow-xl z-20 hidden md:block text-white"
           >
              <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">

@@ -59,8 +59,8 @@ const SolutionsOverview: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="text-brand-cyan text-sm font-semibold tracking-wider uppercase mb-2 block">What We Do</span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">One partner for all your <br/> executive operations.</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">We combine advanced AI automation with human expertise to create a seamless operational backbone for your business.</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-brand-light">One partner for all your <br/> executive operations.</h2>
+          <p className="text-brand-muted max-w-2xl mx-auto">We combine advanced AI automation with human expertise to create a seamless operational backbone for your business.</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -72,25 +72,25 @@ const SolutionsOverview: React.FC = () => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: idx * 0.1 }}
               whileHover={{ y: -5 }}
-              className="group relative bg-[#0F111A] p-8 rounded-2xl border border-white/5 hover:border-white/10 transition-colors overflow-hidden"
+              className="group relative bg-brand-surface p-8 rounded-2xl border border-brand-border hover:border-brand-light/20 transition-colors overflow-hidden"
             >
               <div className={`absolute top-0 left-0 w-full h-1 ${item.accent} opacity-50 group-hover:opacity-100 transition-opacity`} />
               
               <div className="flex justify-between items-start mb-6">
-                <div className={`p-3 rounded-lg bg-white/5 ${item.color}`}>
+                <div className={`p-3 rounded-lg bg-brand-dark dark:bg-white/5 ${item.color}`}>
                   <item.icon size={24} />
                 </div>
                 {item.tag && (
-                  <span className="text-[10px] uppercase font-bold px-2 py-1 rounded bg-white/5 text-gray-300 border border-white/10">
+                  <span className="text-[10px] uppercase font-bold px-2 py-1 rounded bg-brand-dark dark:bg-white/5 text-brand-muted border border-brand-border">
                     {item.tag}
                   </span>
                 )}
               </div>
 
-              <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">{item.desc}</p>
+              <h3 className="text-xl font-bold mb-3 text-brand-light">{item.title}</h3>
+              <p className="text-brand-muted text-sm leading-relaxed mb-6">{item.desc}</p>
               
-              <a href="#use-cases" className="inline-flex items-center text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">
+              <a href="#use-cases" className="inline-flex items-center text-sm font-medium text-brand-light opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">
                 See use cases <span className="ml-1">→</span>
               </a>
             </motion.div>
