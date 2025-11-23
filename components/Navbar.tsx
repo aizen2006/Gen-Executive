@@ -38,8 +38,10 @@ const Navbar: React.FC = () => {
 
       {/* Main Navbar */}
       <motion.nav
-        className={`fixed top-[36px] left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled ? 'bg-brand-dark/80 backdrop-blur-xl border-b border-white/5 py-3' : 'bg-transparent py-5'
+        className={`fixed z-40 transition-all duration-300 ${
+          isScrolled 
+            ? 'top-4 left-0 right-0 mx-auto w-[95%] max-w-7xl rounded-full bg-brand-dark/80 backdrop-blur-xl border border-white/5 py-3 shadow-lg shadow-brand-cyan/5' 
+            : 'top-[36px] left-0 right-0 w-full bg-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
