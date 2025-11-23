@@ -10,7 +10,7 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = 'GenExecutive | AI-Augmented Executive Operations',
+  title = 'GenExecutive | AI Agents & Executive Operations Studio',
   description = 'Executive-level support, powered by AI agents. We build custom AI agents, chatbots, and landing pages while handling your admin needs.',
   image = 'https://www.genexecutive.com/og-image.jpg', // Placeholder: user should update
   url = 'https://www.genexecutive.com',

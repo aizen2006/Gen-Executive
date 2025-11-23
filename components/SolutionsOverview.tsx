@@ -90,7 +90,7 @@ const SolutionsOverview: React.FC = () => {
               <h3 className="text-xl font-bold mb-3">{item.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-6">{item.desc}</p>
               
-              <a href="#" className="inline-flex items-center text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">
+              <a href="#use-cases" className="inline-flex items-center text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">
                 See use cases <span className="ml-1">→</span>
               </a>
             </motion.div>
