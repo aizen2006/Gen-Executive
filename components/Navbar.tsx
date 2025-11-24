@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Menu, X, ArrowRight, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import CalButton from './CalButton';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -86,13 +87,9 @@ const Navbar: React.FC = () => {
             <button className="text-sm font-medium text-brand-muted hover:text-brand-light transition-colors">
               Watch Demo
             </button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-brand-light text-brand-dark px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-white transition-colors shadow-[0_0_20px_rgba(34,230,255,0.3)]"
-            >
-              Book Strategy Call
-            </motion.button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <CalButton className="bg-brand-light text-brand-dark px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-white transition-colors shadow-[0_0_20px_rgba(34,230,255,0.3)]" />
+            </motion.div>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -137,9 +134,7 @@ const Navbar: React.FC = () => {
               <button className="w-full py-3 text-center text-brand-muted border border-brand-border rounded-lg">
                 Watch Demo
               </button>
-              <button className="w-full py-3 text-center bg-brand-cyan text-brand-dark font-bold rounded-lg">
-                Book Strategy Call
-              </button>
+              <CalButton className="w-full py-3 text-center bg-brand-cyan text-brand-dark font-bold rounded-lg" />
             </div>
           </motion.div>
         )}
