@@ -20,7 +20,7 @@ const CalButton: React.FC<CalButtonProps> = ({
   return (
     <button
       data-cal-namespace="30min"
-      data-cal-link="abhik-halder/30min"
+      data-cal-link="soubhik-halder/30min"
       data-cal-config='{"layout":"month_view"}'
       className={className}
       type="button"
