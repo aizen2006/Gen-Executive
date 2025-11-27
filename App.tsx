@@ -13,11 +13,13 @@ import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
+import { Analytics } from "@vercel/analytics/react"
 
 const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-brand-dark text-brand-light selection:bg-brand-cyan selection:text-brand-dark overflow-x-hidden">
       <SEO />
+      <Analytics />
       <Navbar />
       <main>
         <Hero />
