@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import CalButton from './CalButton';
 
 const FinalCTA: React.FC = () => {
   return (
@@ -13,17 +14,20 @@ const FinalCTA: React.FC = () => {
         <p className="text-xl text-brand-muted mb-10">No hard sell, just an honest look at your current ops and where you can save 20+ hours a week.</p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <motion.button 
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-4 bg-brand-cyan text-brand-dark font-bold text-lg rounded-full shadow-[0_0_30px_rgba(34,230,255,0.4)] hover:shadow-[0_0_50px_rgba(34,230,255,0.6)] transition-shadow"
-          >
-            Book a Free Strategy Call
-          </motion.button>
+            >
+            <CalButton className="px-8 py-4 bg-brand-cyan text-brand-dark font-bold text-lg rounded-full shadow-[0_0_30px_rgba(34,230,255,0.4)] hover:shadow-[0_0_50px_rgba(34,230,255,0.6)] transition-shadow" />
+          </motion.div>
           
-          <button className="px-8 py-4 bg-transparent border border-brand-border text-brand-light font-medium text-lg rounded-full hover:bg-brand-surface/10 transition-colors">
-            Send me a sample workflow
-          </button>
+          <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="px-8 py-4 bg-transparent border border-brand-border text-brand-light font-medium text-lg rounded-full hover:bg-brand-surface/10 transition-colors">
+            Contact Us
+          </motion.button>
         </div>
       </div>
     </section>
