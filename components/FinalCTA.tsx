@@ -2,11 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import CalButton from './CalButton';
 
-const FinalCTA: React.FC = () => {
+interface FinalCTAProps {
+  onContactClick?: () => void;
+}
+
+const FinalCTA: React.FC<FinalCTAProps> = ({ onContactClick }) => {
   return (
     <section className="py-32 relative overflow-hidden">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-dark to-brand-surface" />
+      <div className="absolute inset-0 bg-linear-to-b from-brand-dark to-brand-surface" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,230,255,0.1)_0%,transparent_70%)]" />
 
       <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
@@ -23,10 +27,11 @@ const FinalCTA: React.FC = () => {
           </motion.div>
           
           <motion.button 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-8 py-4 bg-transparent border border-brand-border text-brand-light font-medium text-lg rounded-full hover:bg-brand-surface/10 transition-colors">
-            Contact Us
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onContactClick}
+            className="px-8 py-4 bg-transparent border border-brand-border text-brand-light font-medium text-lg rounded-full hover:bg-brand-surface/10 transition-colors">
+              Contact Us
           </motion.button>
         </div>
       </div>

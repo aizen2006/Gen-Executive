@@ -2,7 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Layout, Calendar, Mail, TrendingUp } from 'lucide-react';
 
-const OperationsSection: React.FC = () => {
+interface OperationsSectionProps {
+  onPreviewClick?: (variant: number) => void;
+}
+
+const OperationsSection: React.FC<OperationsSectionProps> = ({ onPreviewClick }) => {
   return (
     <div className="bg-brand-dark">
       {/* Landing Pages Section */}
@@ -26,6 +30,7 @@ const OperationsSection: React.FC = () => {
                 <motion.div 
                     key={item}
                     whileHover={{ y: -10 }}
+                    onClick={() => onPreviewClick?.(item)}
                     className="group relative h-64 bg-brand-slate rounded-xl overflow-hidden border border-brand-border cursor-pointer"
                 >
                     {/* Mock Browser Header */}
@@ -37,7 +42,7 @@ const OperationsSection: React.FC = () => {
                     {/* Mock Page Content that scrolls on hover */}
                     <div className="absolute top-6 left-0 right-0 bottom-0 bg-gray-800 transition-all duration-[2s] ease-linear group-hover:bg-gray-700">
                          {/* Abstract UI Blocks */}
-                         <div className="w-full h-32 bg-gradient-to-br from-gray-700 to-gray-600 mb-2" />
+                         <div className="w-full h-32 bg-linear-to-br from-gray-700 to-gray-600 mb-2" />
                          <div className="mx-4 h-4 w-3/4 bg-white/10 rounded mb-2" />
                          <div className="mx-4 h-4 w-1/2 bg-white/10 rounded mb-8" />
                          <div className="grid grid-cols-2 gap-2 px-4">
@@ -61,7 +66,7 @@ const OperationsSection: React.FC = () => {
             {/* Left: Illustration */}
             <div className="relative">
                 <div className="absolute -left-10 -top-10 w-40 h-40 bg-brand-cyan/20 rounded-full blur-3xl" />
-                <div className="bg-brand-surface border border-brand-border rounded-2xl p-8 relative z-10 shadow-xl">
+                <div className="bg-linear-to-br from-brand-surface to-brand-dark/80 border border-brand-border rounded-2xl p-8 relative z-10 shadow-xl">
                     <h4 className="text-sm font-bold text-brand-muted mb-6 uppercase tracking-wider">A Founder's Day Timeline</h4>
                     <div className="space-y-6 relative border-l border-brand-border ml-3 pl-8">
                         {/* Timeline Item 1 */}
@@ -82,7 +87,7 @@ const OperationsSection: React.FC = () => {
                                 <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan" />
                             </span>
                             <div className="text-xs text-brand-muted mb-1">10:00 AM</div>
-                             <div className="bg-brand-cyan/10 p-3 rounded-lg border border-brand-cyan/20">
+                         <div className="bg-linear-to-br from-brand-cyan/10 to-brand-cyan/5 p-3 rounded-lg border border-brand-cyan/20">
                                 <div className="text-sm font-medium text-brand-cyan mb-1">Strategy Meeting Prep (Done by Human Exec)</div>
                                 <div className="text-xs text-brand-cyan/70">Briefing doc & competitor analysis ready.</div>
                             </div>
