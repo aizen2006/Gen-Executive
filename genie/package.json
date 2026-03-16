@@ -1,0 +1,33 @@
+{
+  "name": "genie",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GenExecutive Genie – an AI sales assistant exposed via Socket.IO and Cal.com-powered scheduling tools.",
+  "type": "module",
+  "main": "dist/api/index.js",
+  "scripts": {
+    "dev": "nodemon --watch . --ext ts --exec \"node --loader ts-node/esm api/server.ts\"",
+    "start": "node dist/api/index.js",
+    "build": "tsc",
+    "lint": "echo \"No linter configured for genie yet\""
+  },
+  "keywords": [
+    "ai-agent",
+    "socket.io",
+    "cal.com",
+    "genexecutive",
+    "sales-assistant"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openai/agents": "^0.7.1",
+    "axios": "^1.13.6",
+    "dotenv": "^17.3.1",
+    "socket.io": "^4.8.3",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
