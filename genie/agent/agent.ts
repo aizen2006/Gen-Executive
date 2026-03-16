@@ -1,5 +1,5 @@
 import { Agent } from '@openai/agents';
-import { create_memo , fetch_availability , meeting_schedule } from './tools';
+import { create_memo , fetch_availability , meeting_schedule, cancel_meeting_tool, reschedule_meeting_tool } from './tools/index.ts';
 import "dotenv/config";
 
 export const genieAgent = new Agent({
@@ -65,6 +65,6 @@ export const genieAgent = new Agent({
         • Successfully scheduling a meeting
         • Creating a useful memo for the team
     `,
-    tools: [create_memo, fetch_availability, meeting_schedule] as any,
+    tools: [create_memo, fetch_availability, meeting_schedule, cancel_meeting_tool, reschedule_meeting_tool] as any,
     model:"gpt-5-nano",
 })

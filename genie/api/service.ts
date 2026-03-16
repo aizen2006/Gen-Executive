@@ -1,12 +1,7 @@
 import { genieAgent } from "../agent/agent.ts";
 import { run } from "@openai/agents";
 import "dotenv/config";
-export type ChatRole = "user" | "assistant" | "system";
-
-export interface ChatMessage {
-  role: ChatRole;
-  content: string;
-}
+import type { ChatMessage } from "./model.ts";
 
 const sessionHistory = new Map<string, ChatMessage[]>();
 

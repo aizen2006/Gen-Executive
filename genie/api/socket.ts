@@ -1,15 +1,6 @@
 import type { Server, Socket } from "socket.io";
 import { chatWithGenie } from "./service.ts";
-
-export interface ChatJoinPayload {
-  sessionId: string;
-  metadata?: Record<string, unknown>;
-}
-
-export interface ChatMessagePayload {
-  sessionId: string;
-  message: string;
-}
+import type { ChatJoinPayload, ChatMessagePayload } from "./model.ts";
 
 export function registerChatSocket(io: Server) {
   io.on("connection", (socket: Socket) => {
@@ -22,12 +13,6 @@ export function registerChatSocket(io: Server) {
     socket.on("chat:message", async (payload: ChatMessagePayload) => {
       const { sessionId, message } = payload;
       if (!sessionId || !message) return;
-
-      io.to(sessionId).emit("chat:message", {
-        from: "user",
-        message,
-        sessionId,
-      });
 
       try {
         io.to(sessionId).emit("chat:typing", { sessionId, typing: true });

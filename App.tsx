@@ -17,6 +17,7 @@ import { Analytics } from "@vercel/analytics/react"
 import OverlayShell from './components/OverlayShell';
 import ContactOverlayContent from './components/ContactOverlayContent';
 import LandingPreviewOverlayContent from './components/LandingPreviewOverlayContent';
+import ChatWidget from './components/ChatWidget';
 
 const App: React.FC = () => {
   const [overlayMode, setOverlayMode] = useState<'none' | 'contact' | 'preview'>('none');
@@ -56,6 +57,8 @@ const App: React.FC = () => {
         />
       </main>
       <Footer />
+
+      <ChatWidget />
 
       <OverlayShell
         isOpen={isOverlayOpen}

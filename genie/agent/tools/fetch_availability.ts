@@ -1,25 +1,10 @@
-import { calClient } from "../../api/calClient";
-import { tool } from "@openai/agents"
+import { tool } from "@openai/agents";
 import { z } from "zod";
-export interface FetchAvailabilityInput {
-  username: string;
-  eventSlug: string;
-  startTime: string;
-  endTime: string;
-  timeZone?: string;
-}
-
-export interface NormalizedSlot {
-  date: string;
-  times: string[];
-}
-
-export interface FetchAvailabilityResult {
-  slots: NormalizedSlot[];
-  raw?: unknown;
-  error?: string;
-  status?: number;
-}
+import { check_availability } from "../../api/calClient.ts";
+import type {
+  FetchAvailabilityInput,
+  FetchAvailabilityResult,
+} from "../../api/model.ts";
 
 export const fetch_availability = tool({
   name: "fetch_availability",
@@ -46,35 +31,19 @@ export const fetch_availability = tool({
         };
       }
 
-      const params: Record<string, string> = {
+      const response = await check_availability({
         username,
         eventSlug,
         startTime,
         endTime,
-      };
+        timeZone,
+      });
 
-      if (timeZone) {
-        params.timeZone = timeZone;
-      }
-
-      const response = await calClient.get("/slots", { params });
-
-      const data = response.data as {
-        data?: { slots?: Record<string, { time: string }[]> };
-      };
-
-      const rawSlots = data.data?.slots ?? {};
-
-      const normalized: NormalizedSlot[] = Object.entries(rawSlots).map(
-        ([date, times]) => ({
-          date,
-          times: (times ?? []).map((t) => t.time),
-        })
-      );
+      const slots = (response.data as any)?.slots ?? [];
 
       return {
-        slots: normalized,
-        raw: data,
+        slots,
+        raw: response.data,
       };
     } catch (error: any) {
       const status = error?.response?.status;

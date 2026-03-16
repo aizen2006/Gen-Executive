@@ -1,5 +1,4 @@
-import axios from "axios";
-import { CAL_API_VERSION } from "../../api/calClient";
+import { schedule_meeting } from "../../api/calClient.ts";
 import { tool } from "@openai/agents";
 import { z } from "zod";
 
@@ -14,8 +13,6 @@ const parameters = z.object({
   bookingFieldsResponses: z.record(z.string(), z.string()).optional(),
   instant: z.boolean().optional(),
 });
-
-const BOOKINGS_URL = "https://api.cal.com/v2/bookings";
 
 export const meeting_schedule = tool({
   name: "meeting_schedule",
@@ -52,40 +49,24 @@ export const meeting_schedule = tool({
     }
 
     try {
-      const body: any = {
-        eventTypeSlug: eventSlug,
+      const response = await schedule_meeting(
         username,
+        eventSlug,
         start,
-        attendee: {
-          name: attendeeName,
-          email: attendeeEmail,
-          timeZone: attendeeTimeZone,
-        },
-      };
+        attendeeName,
+        attendeeEmail,
+        attendeeTimeZone,
+        bookingFieldsResponses,
+        instant
+      );
 
-      if (bookingFieldsResponses) {
-        body.bookingFieldsResponses = bookingFieldsResponses;
-      }
-
-      if (instant !== undefined) {
-        body.instant = instant;
-      }
-
-      const response = await axios.post(BOOKINGS_URL, body, {
-        headers: {
-          "Content-Type": "application/json",
-          "cal-api-version": CAL_API_VERSION,
-        },
-      });
-
-      const data = response.data as any;
-      const booking = data?.data ?? data;
+      const booking = response.data;
 
       return {
         success: true,
-        bookingUid: booking?.uid ?? booking?.bookingUid,
-        start: booking?.startTime ?? booking?.start,
-        data,
+        bookingUid: booking.bookingUid,
+        start: booking.startTime,
+        data: booking,
       };
     } catch (error: any) {
       const status = error?.response?.status;
