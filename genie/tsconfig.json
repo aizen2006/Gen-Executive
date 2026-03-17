@@ -12,6 +12,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "sourceMap": true,
+    "allowImportingTsExtensions": true,
     "types": ["node"]
   },
   "include": ["api/**/*.ts", "agent/**/*.ts"],
