@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.2.118",
     "@calcom/embed-react": "^1.5.3",
     "@tailwindcss/vite": "^4.1.17",
     "@types/node": "^22.14.0",
     "@vercel/analytics": "^1.5.0",
-    "axios": "^1.13.6",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.554.0",
     "react": "^19.2.0",
