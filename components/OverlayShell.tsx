@@ -122,7 +122,7 @@ const OverlayShell: React.FC<OverlayShellProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-4 top-4 rounded-full p-2 text-brand-muted hover:text-brand-light hover:bg-brand-dark/60 transition-colors"
+              className="absolute right-4 top-4 rounded-full p-2 text-brand-muted transition hover:-translate-y-0.5 hover:bg-brand-dark/60 hover:text-brand-light hover:shadow-md"
               aria-label="Close dialog"
             >
               <X size={18} />

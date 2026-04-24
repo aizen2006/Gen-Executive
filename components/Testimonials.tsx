@@ -234,7 +234,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         stiffness: 260,
         damping: 26,
       }}
-      className={`absolute inset-x-0 top-0 mx-auto w-full max-w-[22rem] sm:max-w-[25rem] md:max-w-[31rem] ${
+      className={`absolute inset-x-0 top-0 mx-auto w-full max-w-88 sm:max-w-100 md:max-w-124 ${
         isCenter ? 'z-20' : 'z-10 hidden md:block'
       } ${positionMap[position]}`}
     >

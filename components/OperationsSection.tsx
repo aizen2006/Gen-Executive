@@ -1,10 +1,102 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Layout, Calendar, Mail, TrendingUp } from 'lucide-react';
+import { Calendar, Mail } from 'lucide-react';
+import MagneticCard from './MagneticCard';
 
 interface OperationsSectionProps {
   onPreviewClick?: (variant: number) => void;
 }
+
+const createPreviewImage = ({
+  title,
+  badge,
+  accentStart,
+  accentEnd,
+}: {
+  title: string;
+  badge: string;
+  accentStart: string;
+  accentEnd: string;
+}) =>
+  `data:image/svg+xml;utf8,${encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560">
+      <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#050816" />
+          <stop offset="100%" stop-color="#111827" />
+        </linearGradient>
+        <linearGradient id="hero" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="${accentStart}" />
+          <stop offset="100%" stop-color="${accentEnd}" />
+        </linearGradient>
+      </defs>
+      <rect width="800" height="560" rx="32" fill="url(#bg)" />
+      <rect x="30" y="30" width="740" height="500" rx="28" fill="#0b1220" stroke="rgba(255,255,255,0.10)" />
+      <rect x="56" y="56" width="688" height="176" rx="24" fill="url(#hero)" />
+      <text x="92" y="118" fill="#071019" font-size="24" font-family="Arial, sans-serif" font-weight="700" letter-spacing="2">GROWTH ENGINE</text>
+      <text x="92" y="160" fill="#071019" font-size="44" font-family="Arial, sans-serif" font-weight="700">${title}</text>
+      <rect x="526" y="88" width="170" height="42" rx="21" fill="rgba(255,255,255,0.28)" />
+      <text x="611" y="114" text-anchor="middle" fill="#071019" font-size="18" font-family="Arial, sans-serif" font-weight="700">${badge}</text>
+      <rect x="70" y="274" width="250" height="148" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" />
+      <rect x="344" y="274" width="176" height="148" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" />
+      <rect x="544" y="274" width="186" height="148" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" />
+      <rect x="92" y="302" width="150" height="14" rx="7" fill="rgba(255,255,255,0.16)" />
+      <rect x="92" y="330" width="182" height="10" rx="5" fill="rgba(255,255,255,0.10)" />
+      <rect x="92" y="350" width="166" height="10" rx="5" fill="rgba(255,255,255,0.10)" />
+      <rect x="366" y="302" width="110" height="14" rx="7" fill="rgba(255,255,255,0.16)" />
+      <rect x="366" y="332" width="132" height="58" rx="14" fill="rgba(255,255,255,0.08)" />
+      <rect x="566" y="302" width="108" height="14" rx="7" fill="rgba(255,255,255,0.16)" />
+      <circle cx="601" cy="368" r="32" fill="rgba(255,255,255,0.08)" />
+      <path d="M586 370l12 12 20-28" stroke="${accentStart}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <rect x="70" y="446" width="660" height="46" rx="22" fill="rgba(255,255,255,0.06)" />
+      <rect x="90" y="462" width="164" height="12" rx="6" fill="rgba(255,255,255,0.16)" />
+      <rect x="620" y="456" width="88" height="24" rx="12" fill="${accentStart}" />
+    </svg>
+  `)}`;
+
+const growthEngineCards = [
+  {
+    id: 1,
+    title: 'Founder Funnel',
+    description: 'Narrative-led landing page with clean instrumentation and direct CRM routing.',
+    tag: 'Lead Capture',
+    badge: '+28% opt-in rate',
+    accentClassName: 'from-brand-cyan/40 via-brand-violet/20 to-brand-cyan/20',
+    imageSrc: createPreviewImage({
+      title: 'Founder Funnel',
+      badge: '+28% opt-in',
+      accentStart: '#22E6FF',
+      accentEnd: '#A855F7',
+    }),
+  },
+  {
+    id: 2,
+    title: 'Product Launch',
+    description: 'Offer-first page structure designed for demo requests and fast qualification.',
+    tag: 'Conversion',
+    badge: '+34% demo requests',
+    accentClassName: 'from-pink-500/40 via-orange-400/25 to-pink-500/20',
+    imageSrc: createPreviewImage({
+      title: 'Product Launch',
+      badge: '+34% demos',
+      accentStart: '#EC4899',
+      accentEnd: '#FB923C',
+    }),
+  },
+  {
+    id: 3,
+    title: 'Waitlist Drop',
+    description: 'Launch sequence page with tight CTA framing and analytics-ready event mapping.',
+    tag: 'Launch',
+    badge: '4.2x list growth',
+    accentClassName: 'from-emerald-400/35 via-brand-cyan/20 to-emerald-400/20',
+    imageSrc: createPreviewImage({
+      title: 'Waitlist Drop',
+      badge: '4.2x list',
+      accentStart: '#34D399',
+      accentEnd: '#22E6FF',
+    }),
+  },
+];
 
 const OperationsSection: React.FC<OperationsSectionProps> = ({ onPreviewClick }) => {
   return (
@@ -25,37 +117,19 @@ const OperationsSection: React.FC<OperationsSectionProps> = ({ onPreviewClick })
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-             {/* Interactive Cards simulating landing page previews */}
-             {[1, 2, 3].map((item) => (
-                <motion.div 
-                    key={item}
-                    whileHover={{ y: -10 }}
-                    onClick={() => onPreviewClick?.(item)}
-                    className="group relative h-64 bg-brand-slate rounded-xl overflow-hidden border border-brand-border cursor-pointer"
-                >
-                    {/* Mock Browser Header */}
-                    <div className="h-6 bg-black/20 flex items-center px-3 space-x-1">
-                        <div className="w-2 h-2 rounded-full bg-red-500/50" />
-                        <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
-                        <div className="w-2 h-2 rounded-full bg-green-500/50" />
-                    </div>
-                    {/* Mock Page Content that scrolls on hover */}
-                    <div className="absolute top-6 left-0 right-0 bottom-0 bg-gray-800 transition-all duration-[2s] ease-linear group-hover:bg-gray-700">
-                         {/* Abstract UI Blocks */}
-                         <div className="w-full h-32 bg-linear-to-br from-gray-700 to-gray-600 mb-2" />
-                         <div className="mx-4 h-4 w-3/4 bg-white/10 rounded mb-2" />
-                         <div className="mx-4 h-4 w-1/2 bg-white/10 rounded mb-8" />
-                         <div className="grid grid-cols-2 gap-2 px-4">
-                             <div className="h-20 bg-white/5 rounded" />
-                             <div className="h-20 bg-white/5 rounded" />
-                         </div>
-                    </div>
-                    
-                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span className="bg-black/80 text-white text-xs px-2 py-1 rounded backdrop-blur">View Preview</span>
-                    </div>
-                </motion.div>
-             ))}
+            {growthEngineCards.map((card) => (
+              <MagneticCard
+                key={card.id}
+                title={card.title}
+                description={card.description}
+                imageSrc={card.imageSrc}
+                imageAlt={`${card.title} landing page preview`}
+                tag={card.tag}
+                badge={card.badge}
+                accentClassName={card.accentClassName}
+                onClick={() => onPreviewClick?.(card.id)}
+              />
+            ))}
           </div>
         </div>
       </section>

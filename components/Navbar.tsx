@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="w-full bg-gradient-to-r from-brand-violet/20 to-brand-cyan/20 backdrop-blur-sm border-b border-brand-border py-2 text-center text-xs sm:text-sm font-medium z-50 relative"
+        className="w-full bg-linear-to-r from-brand-violet/20 to-brand-cyan/20 backdrop-blur-sm border-b border-brand-border py-2 text-center text-xs sm:text-sm font-medium z-50 relative"
       >
         <span className="opacity-90 text-brand-light">🚀 3x faster ops for founders & execs — without hiring more staff.</span>
         <a href="#use-cases" className="ml-2 text-brand-cyan hover:underline inline-flex items-center">
@@ -40,11 +40,20 @@ const Navbar: React.FC = () => {
 
       {/* Main Navbar */}
       <motion.nav
-        className={`fixed z-40 transition-all duration-300 ${
+        className={`fixed z-40 ${
           isScrolled 
             ? 'top-4 left-0 right-0 mx-auto w-[95%] max-w-7xl rounded-full bg-brand-dark/80 backdrop-blur-xl border border-brand-border py-3 shadow-lg shadow-brand-cyan/5' 
             : 'top-[36px] left-0 right-0 w-full bg-transparent py-5'
         }`}
+        initial={false}
+        animate={{
+          top: isScrolled ? 16 : 36,
+          width: isScrolled ? '95%' : '100%',
+          borderRadius: isScrolled ? 9999 : 0,
+          paddingTop: isScrolled ? 12 : 20,
+          paddingBottom: isScrolled ? 12 : 20,
+        }}
+        transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
@@ -53,7 +62,7 @@ const Navbar: React.FC = () => {
             className="flex items-center gap-2 group"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-cyan to-brand-violet flex items-center justify-center text-brand-dark">
+            <div className="w-8 h-8 rounded-lg bg-linear-to-br from-brand-cyan to-brand-violet flex items-center justify-center text-brand-dark">
               <Zap size={18} fill="currentColor" />
             </div>
             <span className="text-xl font-bold tracking-tight text-brand-light">GenExecutive</span>

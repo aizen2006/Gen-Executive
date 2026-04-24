@@ -22,6 +22,8 @@ type FormErrors = Partial<Record<keyof ContactFormData, string>> & { _form?: str
 const ContactOverlayContent: React.FC<ContactOverlayContentProps> = ({ onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
+  const baseFieldClass =
+    'w-full rounded-lg border border-gray-200 bg-white/70 px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 backdrop-blur transition focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-400';
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -66,41 +68,45 @@ const ContactOverlayContent: React.FC<ContactOverlayContentProps> = ({ onClose }
   return (
     <div className="grid gap-8 md:grid-cols-[1.1fr,1.3fr] md:items-start">
       {/* Left: Copy */}
-      <div className="space-y-6">
+      <div className="space-y-7">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05, duration: 0.3 }}
-          className="space-y-3"
+          className="space-y-4"
         >
-          <h3 className="text-2xl md:text-3xl font-semibold leading-tight text-brand-light">
-            Let’s map out your next growth engine.
+          <h3 className="max-w-xl text-3xl font-bold leading-tight text-gray-900 md:text-4xl">
+            Let&apos;s map out your next <span className="text-cyan-600">AI-powered growth engine.</span>
           </h3>
-          <p className="text-sm md:text-base text-brand-muted">
+          <p className="max-w-lg text-sm text-gray-600 md:text-base">
             Share a bit about your team, your current bottlenecks, and where you want AI and
             human ops to take work off your plate. We’ll respond with a tailored game plan—no
             generic pitch decks.
           </p>
         </motion.div>
 
-        <div className="grid gap-3 text-sm text-brand-muted">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-cyan/10 text-brand-cyan">
+        <div className="mt-6 space-y-3">
+          <div className="flex items-start gap-3">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan-100 text-cyan-600">
               <Mail size={16} />
             </span>
-            <span>Get a reply within one business day.</span>
+            <p className="pt-1 text-sm text-gray-700">
+              <span className="font-semibold text-gray-900">Reply within one business day.</span>
+            </p>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-violet/10 text-brand-violet">
+          <div className="flex items-start gap-3">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-purple-100 text-purple-600">
               <PhoneCall size={16} />
             </span>
-            <span>Optional follow-up call if it’s a fit.</span>
+            <p className="pt-1 text-sm text-gray-700">Optional follow-up call if it&apos;s a fit.</p>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400">
+          <div className="flex items-start gap-3">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-green-600">
               <MessageSquare size={16} />
             </span>
-            <span>No spam, ever—just clear next steps.</span>
+            <p className="pt-1 text-sm text-gray-700">
+              <span className="font-semibold text-gray-900">No spam</span> - just clear next steps.
+            </p>
           </div>
         </div>
       </div>
@@ -108,14 +114,15 @@ const ContactOverlayContent: React.FC<ContactOverlayContentProps> = ({ onClose }
       {/* Right: Form */}
       <motion.form
         onSubmit={handleSubmit}
-        className="space-y-4 rounded-2xl bg-brand-dark/60 border border-brand-border/80 p-5 md:p-6 shadow-[0_0_40px_rgba(34,230,255,0.15)]"
+        whileHover={{ y: -2 }}
+        className="space-y-4 rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-2xl backdrop-blur-xl transition md:p-7"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.08, duration: 0.3 }}
       >
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium uppercase tracking-wide text-brand-muted" htmlFor="contact-name">
+            <label className="text-xs font-semibold uppercase tracking-wide text-gray-500" htmlFor="contact-name">
               Name
             </label>
             <input
@@ -125,20 +132,20 @@ const ContactOverlayContent: React.FC<ContactOverlayContentProps> = ({ onClose }
               placeholder="Alex Founder"
               aria-invalid={!!errors.name}
               aria-describedby={errors.name ? 'name-error' : undefined}
-              className={`w-full rounded-lg border bg-brand-surface/60 px-3 py-2 text-sm text-brand-light placeholder:text-brand-muted/60 focus:outline-none focus:ring-1 ${
+              className={`${baseFieldClass} ${
                 errors.name
-                  ? 'border-red-500/80 focus:border-red-500 focus:ring-red-500'
-                  : 'border-brand-border focus:border-brand-cyan focus:ring-brand-cyan'
+                  ? 'border-red-400 focus:ring-red-400'
+                  : ''
               }`}
             />
             {errors.name && (
-              <p id="name-error" className="text-xs text-red-400" role="alert">
+              <p id="name-error" className="text-xs text-red-500" role="alert">
                 {errors.name}
               </p>
             )}
           </div>
           <div className="space-y-1.5">
-            <label className="text-xs font-medium uppercase tracking-wide text-brand-muted" htmlFor="contact-email">
+            <label className="text-xs font-semibold uppercase tracking-wide text-gray-500" htmlFor="contact-email">
               Work email
             </label>
             <input
@@ -148,14 +155,14 @@ const ContactOverlayContent: React.FC<ContactOverlayContentProps> = ({ onClose }
               placeholder="you@company.com"
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? 'email-error' : undefined}
-              className={`w-full rounded-lg border bg-brand-surface/60 px-3 py-2 text-sm text-brand-light placeholder:text-brand-muted/60 focus:outline-none focus:ring-1 ${
+              className={`${baseFieldClass} ${
                 errors.email
-                  ? 'border-red-500/80 focus:border-red-500 focus:ring-red-500'
-                  : 'border-brand-border focus:border-brand-cyan focus:ring-brand-cyan'
+                  ? 'border-red-400 focus:ring-red-400'
+                  : ''
               }`}
             />
             {errors.email && (
-              <p id="email-error" className="text-xs text-red-400" role="alert">
+              <p id="email-error" className="text-xs text-red-500" role="alert">
                 {errors.email}
               </p>
             )}
@@ -163,7 +170,7 @@ const ContactOverlayContent: React.FC<ContactOverlayContentProps> = ({ onClose }
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-medium uppercase tracking-wide text-brand-muted" htmlFor="contact-company">
+          <label className="text-xs font-semibold uppercase tracking-wide text-gray-500" htmlFor="contact-company">
             Company / Team size
           </label>
           <input
@@ -173,55 +180,56 @@ const ContactOverlayContent: React.FC<ContactOverlayContentProps> = ({ onClose }
             placeholder="E.g. Seed-stage SaaS, 8-person team"
             aria-invalid={!!errors.company}
             aria-describedby={errors.company ? 'company-error' : undefined}
-            className={`w-full rounded-lg border bg-brand-surface/60 px-3 py-2 text-sm text-brand-light placeholder:text-brand-muted/60 focus:outline-none focus:ring-1 ${
+            className={`${baseFieldClass} ${
               errors.company
-                ? 'border-red-500/80 focus:border-red-500 focus:ring-red-500'
-                : 'border-brand-border focus:border-brand-cyan focus:ring-brand-cyan'
+                ? 'border-red-400 focus:ring-red-400'
+                : ''
             }`}
           />
           {errors.company && (
-            <p id="company-error" className="text-xs text-red-400" role="alert">
+            <p id="company-error" className="text-xs text-red-500" role="alert">
               {errors.company}
             </p>
           )}
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-medium uppercase tracking-wide text-brand-muted" htmlFor="contact-message">
+          <label className="text-xs font-semibold uppercase tracking-wide text-gray-500" htmlFor="contact-message">
             What do you want to build or streamline?
           </label>
           <textarea
             id="contact-message"
             name="message"
             rows={4}
-            placeholder="Share your top 2–3 workflows you'd like AI agents, landing pages, or exec support to handle."
+            placeholder="e.g. Automating lead gen, dashboards, AI agents..."
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? 'message-error' : undefined}
-            className={`w-full rounded-lg border bg-brand-surface/60 px-3 py-2 text-sm text-brand-light placeholder:text-brand-muted/60 focus:outline-none focus:ring-1 resize-none ${
+            className={`${baseFieldClass} resize-none ${
               errors.message
-                ? 'border-red-500/80 focus:border-red-500 focus:ring-red-500'
-                : 'border-brand-border focus:border-brand-cyan focus:ring-brand-cyan'
+                ? 'border-red-400 focus:ring-red-400'
+                : ''
             }`}
           />
           {errors.message && (
-            <p id="message-error" className="text-xs text-red-400" role="alert">
+            <p id="message-error" className="text-xs text-red-500" role="alert">
               {errors.message}
             </p>
           )}
         </div>
 
         {errors._form && (
-          <p className="text-sm text-red-400" role="alert">
+          <p className="text-sm text-red-500" role="alert">
             {errors._form}
           </p>
         )}
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between pt-1">
+        <div className="pt-2">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center justify-center rounded-full bg-brand-cyan px-6 py-2.5 text-sm font-semibold text-brand-dark shadow-[0_0_30px_rgba(34,230,255,0.5)] transition hover:shadow-[0_0_45px_rgba(34,230,255,0.8)] disabled:opacity-70 disabled:cursor-not-allowed"
+            className="group relative mt-1 inline-flex w-full items-center justify-center overflow-hidden rounded-xl bg-linear-to-r from-cyan-500 to-teal-500 px-6 py-3 font-semibold text-white shadow-lg transition hover:shadow-cyan-500/30 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {isSubmitting ? 'Sending…' : 'Send message'}
+            <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+            <span className="relative z-10">{isSubmitting ? 'Sending...' : 'Send message ->'}</span>
           </button>
           <p className="text-[11px] text-brand-muted">
             By submitting, you agree to hear from us about GenExecutive services. No noise, just
