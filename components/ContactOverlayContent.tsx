@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, PhoneCall, MessageSquare } from 'lucide-react';
-import contact from '../api/contact';
+import contact from '../lib/contactClient';
 import { z } from 'zod';
 
 const contactSchema = z.object({
@@ -234,4 +234,3 @@ const ContactOverlayContent: React.FC<ContactOverlayContentProps> = ({ onClose }
 };
 
 export default ContactOverlayContent;
-

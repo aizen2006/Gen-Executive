@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
-import { getGenieSocket, sendGenieMessage, GenieChatMessage, GenieTypingEvent, GenieErrorEvent } from "../lib/genieSocket";
+import { streamGenieMessage } from "../lib/genieClient";
 
 interface ChatMessage {
   id: string;
@@ -18,58 +18,78 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ initialOpen = false }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const socket = useMemo(() => (typeof window !== "undefined" ? getGenieSocket() : null), []);
+  const handleSend = async () => {
+    const trimmed = input.trim();
+    if (!trimmed || isStreaming) return;
 
-  useEffect(() => {
-    if (!socket) return;
+    const assistantMessageId = `${Date.now()}-${Math.random()}-assistant`;
 
-    const handleMessage = (payload: GenieChatMessage) => {
-      setMessages((prev) => [
+    setMessages((prev) => {
+      const next = [
         ...prev,
         {
-          id: `${Date.now()}-${Math.random()}`,
-          from: payload.from,
-          text: payload.message,
+          id: `${Date.now()}-${Math.random()}-user`,
+          from: "user" as const,
+          text: trimmed,
         },
-      ]);
-    };
+        {
+          id: assistantMessageId,
+          from: "agent" as const,
+          text: "",
+        },
+      ];
 
-    const handleTyping = (payload: GenieTypingEvent) => {
-      setIsTyping(payload.typing);
-    };
-
-    const handleError = (payload: GenieErrorEvent) => {
-      setError(payload.message);
-    };
-
-    socket.on("chat:message", handleMessage);
-    socket.on("chat:typing", handleTyping);
-    socket.on("chat:error", handleError);
-
-    return () => {
-      socket.off("chat:message", handleMessage);
-      socket.off("chat:typing", handleTyping);
-      socket.off("chat:error", handleError);
-    };
-  }, [socket]);
-
-  const handleSend = () => {
-    const trimmed = input.trim();
-    if (!trimmed) return;
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: `${Date.now()}-${Math.random()}`,
-        from: "user",
-        text: trimmed,
-      },
-    ]);
+      return next;
+    });
     setInput("");
     setError(null);
-    sendGenieMessage(trimmed);
+    setIsTyping(true);
+    setIsStreaming(true);
     if (!isOpen) setIsOpen(true);
+
+    try {
+      await streamGenieMessage(trimmed, {
+        onStatus: (payload) => {
+          setIsTyping(payload.phase !== "done");
+        },
+        onChunk: (payload) => {
+          if (!payload.text) return;
+
+          setMessages((prev) =>
+            prev.map((message) =>
+              message.id === assistantMessageId
+                ? { ...message, text: `${message.text}${payload.text}` }
+                : message,
+            ),
+          );
+        },
+        onError: (payload) => {
+          setError(payload.message);
+          setIsTyping(false);
+        },
+        onDone: () => {
+          setIsTyping(false);
+        },
+      });
+    } catch (streamError) {
+      setError(streamError instanceof Error ? streamError.message : "Genie chat failed to start.");
+      setMessages((prev) =>
+        prev.map((message) =>
+          message.id === assistantMessageId && !message.text
+            ? {
+                ...message,
+                text: "Genie is unavailable right now.",
+              }
+            : message,
+        ),
+      );
+      setIsTyping(false);
+    } finally {
+      setIsStreaming(false);
+    }
   };
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
@@ -169,10 +189,10 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ initialOpen = false }) => {
                 <button
                   type="button"
                   onClick={handleSend}
-                  disabled={!input.trim()}
+                  disabled={!input.trim() || isStreaming}
                   className="inline-flex h-8 px-3 items-center justify-center rounded-full bg-brand-cyan text-[11px] font-semibold text-brand-dark disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(34,230,255,0.6)]"
                 >
-                  Send
+                  {isStreaming ? "Streaming..." : "Send"}
                 </button>
               </div>
             </div>
@@ -184,4 +204,3 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ initialOpen = false }) => {
 };
 
 export default ChatWidget;
-

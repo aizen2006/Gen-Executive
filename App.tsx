@@ -8,8 +8,7 @@ import DeepDive from './components/DeepDive';
 import OperationsSection from './components/OperationsSection';
 import HowItWorks from './components/HowItWorks';
 import UseCases from './components/UseCases';
-import Results from './components/Results';
-import Pricing from './components/Pricing';
+import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
@@ -47,8 +46,7 @@ const App: React.FC = () => {
         />
         <HowItWorks />
         <UseCases />
-        <Results />
-        <Pricing />
+        <Testimonials />
         <FAQ />
         <FinalCTA
           onContactClick={() => {

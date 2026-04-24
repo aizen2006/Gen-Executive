@@ -20,7 +20,6 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Solutions', href: '#solutions' },
     { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Pricing', href: '#pricing' },
     { name: 'Use Cases', href: '#use-cases' },
   ];
 
@@ -34,7 +33,7 @@ const Navbar: React.FC = () => {
         className="w-full bg-gradient-to-r from-brand-violet/20 to-brand-cyan/20 backdrop-blur-sm border-b border-brand-border py-2 text-center text-xs sm:text-sm font-medium z-50 relative"
       >
         <span className="opacity-90 text-brand-light">🚀 3x faster ops for founders & execs — without hiring more staff.</span>
-        <a href="#results" className="ml-2 text-brand-cyan hover:underline inline-flex items-center">
+        <a href="#use-cases" className="ml-2 text-brand-cyan hover:underline inline-flex items-center">
           See how <ArrowRight className="w-3 h-3 ml-1" />
         </a>
       </motion.div>
